@@ -1,4 +1,5 @@
 # morse-code-interpreter
+Converts beeps to letters
 
 ## Project setup
 ```
