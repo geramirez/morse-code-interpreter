@@ -13,11 +13,11 @@ function chunkByTwo(array) {
 
 function eventsToBeeps(events) {
   return chunkByTwo(events).map((eventPair) => {
-    const mouseDown = eventPair[0];
-    const mouseUp = eventPair[1];
-    const beep = { startTime: mouseDown.timeStamp, endTime: mouseUp.timeStamp };
-
-    if ((mouseUp.timeStamp - mouseDown.timeStamp) >= 3) {
+    const keyDown = eventPair[0];
+    const keyUp = eventPair[1];
+    const beep = { startTime: keyDown.timeStamp, endTime: keyUp.timeStamp };
+    
+    if ((keyUp.timeStamp - keyDown.timeStamp) >= 3) {
       return { ...beep, ...{ type: Beeps.LONG } };
     }
     return { ...beep, ...{ type: Beeps.SHORT } };
@@ -53,6 +53,6 @@ function charsToWords(data, item) {
   return { word: `${data.word}${item.char}`, lastItem: item };
 }
 
-module.exports = {
+export {
   eventsToBeeps, beepsToChars, charsToWords, Beeps,
 };

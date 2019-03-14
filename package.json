@@ -9,7 +9,8 @@
     "test": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "vue": "^2.6.6"
+    "vue": "^2.6.6",
+    "vue-rx": "^6.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
