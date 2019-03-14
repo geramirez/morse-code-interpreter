@@ -4,20 +4,20 @@ import {
 
 describe('eventsToBeeps', () => {
   test('converts close events to short beeps', () => {
-    const events = [
+    const events = [[
       { timeStamp: 0, type: 'mousedown' },
       { timeStamp: 1, type: 'mouseup' },
-    ];
+    ]];
     const expectedBeep = [{ type: Beeps.SHORT, startTime: 0, endTime: 1 }];
     const actualBeep = eventsToBeeps(events);
     expect(actualBeep).toEqual(expectedBeep);
   });
 
   test('converts less close events to long beeps', () => {
-    const events = [
+    const events = [[
       { timeStamp: 0, type: 'mousedown' },
       { timeStamp: 3, type: 'mouseup' },
-    ];
+    ]];
     const expectedBeep = [{ type: Beeps.LONG, startTime: 0, endTime: 3 }];
     const actualBeep = eventsToBeeps(events);
     expect(actualBeep).toEqual(expectedBeep);
@@ -25,10 +25,10 @@ describe('eventsToBeeps', () => {
 
   test('converts more than 2 events to beeps', () => {
     const events = [
-      { timeStamp: 0, type: 'mousedown' },
-      { timeStamp: 3, type: 'mouseup' },
-      { timeStamp: 4, type: 'mousedown' },
-      { timeStamp: 7, type: 'mouseup' },
+      [{ timeStamp: 0, type: 'mousedown' },
+      { timeStamp: 3, type: 'mouseup' }],
+      [{ timeStamp: 4, type: 'mousedown' },
+      { timeStamp: 7, type: 'mouseup' }],
     ];
     const expectedBeep = [
       { type: Beeps.LONG, startTime: 0, endTime: 3 },
@@ -62,6 +62,22 @@ describe('beepsToChars', () => {
           { type: Beeps.LONG, startTime: 0 },
           { type: Beeps.SHORT },
           { type: Beeps.LONG },
+          { type: Beeps.SHORT, endTime: 1 },
+        ],
+      },
+      {
+        expectedLetter: 'O',
+        codeSequence: [
+          { type: Beeps.LONG, startTime: 0 },
+          { type: Beeps.LONG },
+          { type: Beeps.LONG, endTime: 1 },
+        ],
+      },
+      {
+        expectedLetter: 'S',
+        codeSequence: [
+          { type: Beeps.SHORT, startTime: 0 },
+          { type: Beeps.SHORT },
           { type: Beeps.SHORT, endTime: 1 },
         ],
       },

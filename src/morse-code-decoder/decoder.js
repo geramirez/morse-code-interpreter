@@ -12,11 +12,10 @@ function chunkByTwo(array) {
 }
 
 function eventsToBeeps(events) {
-  return chunkByTwo(events).map((eventPair) => {
+  return events.map((eventPair) => {
     const keyDown = eventPair[0];
     const keyUp = eventPair[1];
     const beep = { startTime: keyDown.timeStamp, endTime: keyUp.timeStamp };
-    
     if ((keyUp.timeStamp - keyDown.timeStamp) >= 3) {
       return { ...beep, ...{ type: Beeps.LONG } };
     }
@@ -25,6 +24,7 @@ function eventsToBeeps(events) {
 }
 
 function beepsToChars(codeSequence) {
+
   const stringSequence = JSON.stringify(codeSequence.map(c => c.type));
   const char = {
     startTime: codeSequence[0].startTime,
@@ -39,6 +39,12 @@ function beepsToChars(codeSequence) {
   }
   if (stringSequence === JSON.stringify([Beeps.LONG, Beeps.SHORT, Beeps.LONG, Beeps.SHORT])) {
     return { ...char, ...{ char: 'C' } };
+  }
+  if (stringSequence === JSON.stringify([Beeps.SHORT, Beeps.SHORT, Beeps.SHORT])) {
+    return { ...char, ...{ char: 'S' } };
+  }
+  if (stringSequence === JSON.stringify([Beeps.LONG, Beeps.LONG, Beeps.LONG])) {
+    return { ...char, ...{ char: 'O' } };
   }
   return { ...char, ...{ char: 'D' } };
 }

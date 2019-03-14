@@ -3,7 +3,6 @@
     <h1>{{ message$ }}</h1>
     <button><h1>Beep</h1></button>
   </div>
-  
 </template>
 
 <script>
@@ -38,7 +37,6 @@ export default {
       distinctUntilChanged((last, current) => last.type === current.type),
       bufferCount(2),
       buffer(closeStream),
-      map(eventArray => eventArray[0]),
       map(eventsToBeeps),
       map(beepsToChars),
       scan(charsToWords, ""),

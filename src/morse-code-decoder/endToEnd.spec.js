@@ -12,22 +12,22 @@ describe('Morse Code Pipeline', () => {
       const { cold, expectObservable } = helpers;
       const events = {
         a: [
-          { timeStamp: 0, type: 'mouseup' },
-          { timeStamp: 1, type: 'mousedown' },
-          { timeStamp: 2, type: 'mouseup' },
-          { timeStamp: 5, type: 'mousedown' },
+          [{ timeStamp: 0, type: 'mouseup' },
+          { timeStamp: 1, type: 'mousedown' }],
+          [{ timeStamp: 2, type: 'mouseup' },
+          { timeStamp: 5, type: 'mousedown' }],
         ],
         b: [
-          { timeStamp: 6, type: 'mouseup' },
-          { timeStamp: 7, type: 'mousedown' },
-          { timeStamp: 8, type: 'mouseup' },
-          { timeStamp: 11, type: 'mousedown' },
+          [{ timeStamp: 6, type: 'mouseup' },
+          { timeStamp: 7, type: 'mousedown' }],
+          [{ timeStamp: 8, type: 'mouseup' },
+          { timeStamp: 11, type: 'mousedown' }],
         ],
         c: [
-          { timeStamp: 18, type: 'mouseup' },
-          { timeStamp: 19, type: 'mousedown' },
-          { timeStamp: 20, type: 'mouseup' },
-          { timeStamp: 23, type: 'mousedown' },
+          [{ timeStamp: 18, type: 'mouseup' },
+          { timeStamp: 19, type: 'mousedown' }],
+          [{ timeStamp: 20, type: 'mouseup' },
+          { timeStamp: 23, type: 'mousedown' }],
         ],
       };
 
