@@ -3,6 +3,9 @@ const Beeps = Object.freeze({
   SHORT: 'short',
 });
 
+const NEW_WORD_BREAK = 1000;
+const SHORT_THRESHOLD_BREAK = 100;
+
 function chunkByTwo(array) {
   const newArray = [];
   while (array.length > 0) {
@@ -16,7 +19,7 @@ function eventsToBeeps(events) {
     const keyDown = eventPair[0];
     const keyUp = eventPair[1];
     const beep = { startTime: keyDown.timeStamp, endTime: keyUp.timeStamp };
-    if ((keyUp.timeStamp - keyDown.timeStamp) >= 3) {
+    if ((keyUp.timeStamp - keyDown.timeStamp) >= SHORT_THRESHOLD_BREAK) {
       return { ...beep, ...{ type: Beeps.LONG } };
     }
     return { ...beep, ...{ type: Beeps.SHORT } };
@@ -24,7 +27,6 @@ function eventsToBeeps(events) {
 }
 
 function beepsToChars(codeSequence) {
-
   const stringSequence = JSON.stringify(codeSequence.map(c => c.type));
   const char = {
     startTime: codeSequence[0].startTime,
@@ -53,7 +55,7 @@ function charsToWords(data, item) {
   if (data.word === undefined) {
     return { word: item.char, lastItem: item };
   }
-  if ((item.startTime - data.lastItem.endTime) >= 7) {
+  if ((item.startTime - data.lastItem.endTime) >= NEW_WORD_BREAK) {
     return { word: `${data.word} ${item.char}`, lastItem: item };
   }
   return { word: `${data.word}${item.char}`, lastItem: item };

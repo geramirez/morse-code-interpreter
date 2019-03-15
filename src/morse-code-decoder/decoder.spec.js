@@ -6,9 +6,9 @@ describe('eventsToBeeps', () => {
   test('converts close events to short beeps', () => {
     const events = [[
       { timeStamp: 0, type: 'mousedown' },
-      { timeStamp: 1, type: 'mouseup' },
+      { timeStamp: 50, type: 'mouseup' },
     ]];
-    const expectedBeep = [{ type: Beeps.SHORT, startTime: 0, endTime: 1 }];
+    const expectedBeep = [{ type: Beeps.SHORT, startTime: 0, endTime: 50 }];
     const actualBeep = eventsToBeeps(events);
     expect(actualBeep).toEqual(expectedBeep);
   });
@@ -16,9 +16,9 @@ describe('eventsToBeeps', () => {
   test('converts less close events to long beeps', () => {
     const events = [[
       { timeStamp: 0, type: 'mousedown' },
-      { timeStamp: 3, type: 'mouseup' },
+      { timeStamp: 400, type: 'mouseup' },
     ]];
-    const expectedBeep = [{ type: Beeps.LONG, startTime: 0, endTime: 3 }];
+    const expectedBeep = [{ type: Beeps.LONG, startTime: 0, endTime: 400 }];
     const actualBeep = eventsToBeeps(events);
     expect(actualBeep).toEqual(expectedBeep);
   });
@@ -26,13 +26,13 @@ describe('eventsToBeeps', () => {
   test('converts more than 2 events to beeps', () => {
     const events = [
       [{ timeStamp: 0, type: 'mousedown' },
-      { timeStamp: 3, type: 'mouseup' }],
-      [{ timeStamp: 4, type: 'mousedown' },
-      { timeStamp: 7, type: 'mouseup' }],
+      { timeStamp: 100, type: 'mouseup' }],
+      [{ timeStamp: 100, type: 'mousedown' },
+      { timeStamp: 400, type: 'mouseup' }],
     ];
     const expectedBeep = [
-      { type: Beeps.LONG, startTime: 0, endTime: 3 },
-      { type: Beeps.LONG, startTime: 4, endTime: 7 },
+      { type: Beeps.LONG, startTime: 0, endTime: 100 },
+      { type: Beeps.LONG, startTime: 100, endTime: 400 },
     ];
     const actualBeep = eventsToBeeps(events);
     expect(actualBeep).toEqual(expectedBeep);
@@ -94,10 +94,10 @@ describe('beepsToChars', () => {
 describe('charsToWords', () => {
   test('decodes codes into UTF-8 char', () => {
     const testCases = [
-      { char: 'A', startTime: 0, endTime: 1 },
-      { char: 'B', startTime: 4, endTime: 5 },
-      { char: 'C', startTime: 12, endTime: 13 },
-      { char: 'D', startTime: 14, endTime: 15 },
+      { char: 'A', startTime: 0, endTime: 100 },
+      { char: 'B', startTime: 101, endTime: 200 },
+      { char: 'C', startTime: 2001, endTime: 2100 },
+      { char: 'D', startTime: 2101, endTime: 2200 },
     ];
     const actualData = testCases.reduce(charsToWords, {});
     expect(actualData.word).toEqual('AB CD');

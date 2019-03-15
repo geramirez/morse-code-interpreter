@@ -13,21 +13,21 @@ describe('Morse Code Pipeline', () => {
       const events = {
         a: [
           [{ timeStamp: 0, type: 'mouseup' },
-          { timeStamp: 1, type: 'mousedown' }],
-          [{ timeStamp: 2, type: 'mouseup' },
-          { timeStamp: 5, type: 'mousedown' }],
+          { timeStamp: 99, type: 'mousedown' }],
+          [{ timeStamp: 101, type: 'mouseup' },
+          { timeStamp: 400, type: 'mousedown' }],
         ],
         b: [
-          [{ timeStamp: 6, type: 'mouseup' },
-          { timeStamp: 7, type: 'mousedown' }],
-          [{ timeStamp: 8, type: 'mouseup' },
-          { timeStamp: 11, type: 'mousedown' }],
+          [{ timeStamp: 600, type: 'mouseup' },
+          { timeStamp: 699, type: 'mousedown' }],
+          [{ timeStamp: 700, type: 'mouseup' },
+          { timeStamp: 1000, type: 'mousedown' }],
         ],
         c: [
-          [{ timeStamp: 18, type: 'mouseup' },
-          { timeStamp: 19, type: 'mousedown' }],
-          [{ timeStamp: 20, type: 'mouseup' },
-          { timeStamp: 23, type: 'mousedown' }],
+          [{ timeStamp: 2800, type: 'mouseup' },
+          { timeStamp: 2899, type: 'mousedown' }],
+          [{ timeStamp: 3000, type: 'mouseup' },
+          { timeStamp: 4300, type: 'mousedown' }],
         ],
       };
 

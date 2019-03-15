@@ -27,7 +27,7 @@ export default {
   name: "App",
   subscriptions() {
     const closeStream = this.$fromDOMEvent("button", "keyup").pipe(
-      debounceTime(1000)
+      debounceTime(700),
     );
 
     const infostream = merge(
